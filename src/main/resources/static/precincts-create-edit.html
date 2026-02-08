@@ -67,7 +67,7 @@
 
     function displayPrecinct(precinct) {
         document.getElementById("precinctName").value = precinct.name;
-		let regionUrl = removeTrialingProjection(
+		let regionUrl = removeTrailingProjection(
             precinct._links.belongsToRegion.href);
         genericGet(regionUrl, function(data) {
             document.getElementById("availableRegions").value = data._links.self.href;

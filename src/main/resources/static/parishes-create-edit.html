@@ -83,7 +83,7 @@
 
     function displayParish(parish) {
         document.getElementById("parishName").value = parish.name;
-		let regionUrl = removeTrialingProjection(
+		let regionUrl = removeTrailingProjection(
             parish._links.belongsToRegion.href);
         genericGet(regionUrl, function(data) {
             document.getElementById("availableRegions").value = data._links.self.href;
@@ -95,7 +95,7 @@
 			, function(precincts) {
 				populateAvailablePrecincts(precincts);
 				if (parish.belongsToPrecinct) {
-					let precinctUrl = removeTrialingProjection(
+					let precinctUrl = removeTrailingProjection(
 						parish._links.belongsToPrecinct.href);
 					genericGet(precinctUrl, function(data) {
 						document.getElementById("availablePrecincts").value = data._links.self.href;

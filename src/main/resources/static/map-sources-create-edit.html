@@ -83,9 +83,9 @@
     function displayMapSource(mapSource) {
         document.getElementById("dating").value = mapSource.dating;
         document.getElementById("mapSheet").value = mapSource.mapSheet;
-        var landSurveyorUrl = removeTrialingProjection(
+        var landSurveyorUrl = removeTrailingProjection(
             mapSource._links.landSurveyor.href);
-        var mapSignatureUrl = removeTrialingProjection(
+        var mapSignatureUrl = removeTrailingProjection(
             mapSource._links.mapSignature.href);
         genericGet(landSurveyorUrl, function(data) {
             document.getElementById("availableLandSurveyors").value = data._links.self.href;

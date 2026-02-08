@@ -110,9 +110,9 @@
     }
 
     function displaySourceFinding(sourceFinding) {
-		var sourceUrl = removeTrialingProjection(
+		var sourceUrl = removeTrailingProjection(
             sourceFinding._links.source.href);
-        var partOfSourceUrl = removeTrialingProjection(
+        var partOfSourceUrl = removeTrailingProjection(
             sourceFinding._links.partOfSource.href);
         genericGet(sourceUrl, function(data) {
             document.getElementById("availableSources").value = data._links.self.href;

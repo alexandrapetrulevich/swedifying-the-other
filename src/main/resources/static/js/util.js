@@ -1,9 +1,9 @@
-function removeTrialingProjection(string) {
+function removeTrailingProjection(string) {
     return string.replace(/\{\?projection\}/, "");
 }
 
 function getIdFromHref(href) {
-    return removeTrialingProjection(href).split("/").pop();
+    return removeTrailingProjection(href).split("/").pop();
 }
 
 function removeAllOptionsFromSelect(selectElement) {

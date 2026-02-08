@@ -70,7 +70,7 @@
 
     function displayTextSource(textSource) {
         document.getElementById("dating").value = textSource.dating;
-        var landSurveyorUrl = removeTrialingProjection(
+        var landSurveyorUrl = removeTrailingProjection(
             textSource._links.landSurveyor.href);
         genericGet(landSurveyorUrl, function(data) {
             document.getElementById("availableLandSurveyors").value = data._links.self.href;

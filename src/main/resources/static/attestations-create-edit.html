@@ -70,11 +70,11 @@
     function displayAttestation(attestation) {
         document.getElementById("originalForm").value = attestation.originalForm;
         document.getElementById("notes").value = attestation.notes;
-        var selectedVariantForm = removeTrialingProjection(attestation.variantForm._links.self.href);
+        var selectedVariantForm = removeTrailingProjection(attestation.variantForm._links.self.href);
         console.log("Selecting variant form " + selectedVariantForm);
         document.getElementById("availableVariantForms").value = selectedVariantForm;
-        document.getElementById("availableLocations").value = removeTrialingProjection(attestation.location._links.self.href);
-        document.getElementById("availableSourceFindings").value = removeTrialingProjection(attestation.sourceFinding._links.self.href);
+        document.getElementById("availableLocations").value = removeTrailingProjection(attestation.location._links.self.href);
+        document.getElementById("availableSourceFindings").value = removeTrailingProjection(attestation.sourceFinding._links.self.href);
         variantFormSelected();
         locationSelected();
         sourceFindingSelected();
@@ -239,7 +239,7 @@
                 + sourceFinding.partOfSource.partOfSourceId
                 + ")";
 
-        var urlToGet = removeTrialingProjection(sourceFinding._links.source.href);
+        var urlToGet = removeTrailingProjection(sourceFinding._links.source.href);
         if (sourceFinding.source.type.startsWith("Map")) {
             urlToGet = urlToGet + "?projection=mapSourceView";
         } else if (sourceFinding.source.type.startsWith("Text")) {
@@ -288,17 +288,17 @@
 
     function displayLocalityType(localityType) {
         document.getElementById("locationLocalityType").value = localityType.localityTypeName;
-        document.getElementById("locationLocalityTypeId").value = removeTrialingProjection(localityType._links.self.href).split("/").pop();
+        document.getElementById("locationLocalityTypeId").value = removeTrailingProjection(localityType._links.self.href).split("/").pop();
     }
 
     function displayRegion(region) {
         document.getElementById("locationRegion").value = region.regionName;
-        document.getElementById("locationRegionId").value = removeTrialingProjection(region._links.self.href).split("/").pop();
+        document.getElementById("locationRegionId").value = removeTrailingProjection(region._links.self.href).split("/").pop();
     }
 
     function displayDistrictOrParish(districtOrParish) {
         document.getElementById("locationDistrictOrParish").value = districtOrParish.name;
-        document.getElementById("locationDistrictOrParishId").value = removeTrialingProjection(districtOrParish._links.self.href).split("/").pop();
+        document.getElementById("locationDistrictOrParishId").value = removeTrailingProjection(districtOrParish._links.self.href).split("/").pop();
 
         displayRegion(districtOrParish.belongsToRegion);
     }
@@ -378,7 +378,7 @@
     <fieldset>
         <legend><b><i>Locations</i></b></legend>
         <p>
-            <button type="button" onclick="goToEditLocation();">Edit Source Finding</button>
+            <button type="button" onclick="goToEditLocation();">Edit Location</button>
         </p>
         
         <p>

@@ -63,8 +63,8 @@
                 new Option(
                     districts[i].name
                         + " (type: district, "
-                        + removeTrialingProjection(districts[i]._links.self.href) + ")"
-                    , removeTrialingProjection(districts[i]._links.self.href)));
+                        + removeTrailingProjection(districts[i]._links.self.href) + ")"
+                    , removeTrailingProjection(districts[i]._links.self.href)));
         }
         displayRegion(districts[0].belongsToRegion);
         console.log("District options populated");
@@ -77,8 +77,8 @@
                 new Option(
                     parishes[i].name
                        + " (type: parish, belongs to precinct " + parishes[i].belongsToPrecinct.name + ", "
-                       + removeTrialingProjection(parishes[i]._links.self.href) + ")"
-                    , removeTrialingProjection(parishes[i]._links.self.href)));
+                       + removeTrailingProjection(parishes[i]._links.self.href) + ")"
+                    , removeTrailingProjection(parishes[i]._links.self.href)));
         }
         console.log("Parishes options populated");
     }
@@ -138,8 +138,8 @@
     }
 
     function displayDistrictOrParish(districtOrParish) {
-        console.log("Selecting dop: " + removeTrialingProjection(districtOrParish._links.self.href));
-        document.getElementById("districtOrParish").value = removeTrialingProjection(districtOrParish._links.self.href);
+        console.log("Selecting dop: " + removeTrailingProjection(districtOrParish._links.self.href));
+        document.getElementById("districtOrParish").value = removeTrailingProjection(districtOrParish._links.self.href);
         displayRegion(districtOrParish.belongsToRegion);
     }
 
@@ -147,11 +147,11 @@
         document.getElementById("locationRegion").value =
             region.regionName
             + " (ID: "
-            + removeTrialingProjection(region._links.self.href).split("/").pop() + ")";
+            + removeTrailingProjection(region._links.self.href).split("/").pop() + ")";
     }
 
     function displayLocalityType(localityType) {
-        document.getElementById("localityType").value = removeTrialingProjection(localityType._links.self.href);
+        document.getElementById("localityType").value = removeTrailingProjection(localityType._links.self.href);
     }
 
     function locationCreatedOrEdited(location) {
