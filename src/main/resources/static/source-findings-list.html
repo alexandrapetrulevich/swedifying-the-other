@@ -26,7 +26,7 @@
                     + " (ID: " + sourceFindings[i].source.sourceId
                     + ")";
                 let sourceHref =
-                    removeTrialingProjection(sourceFindings[i].source._links.self.href);
+                    removeTrailingProjection(sourceFindings[i].source._links.self.href);
                 if (sourceFindings[i].source.type === "MapSource") {
                     genericGet(
                         sourceHref + "?projection=mapSourceView"

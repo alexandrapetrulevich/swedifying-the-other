@@ -117,7 +117,7 @@
         document.getElementById("morphologicalNameTypeIsShaky").checked = normalizedForm.morphologicalNameTypeIsShaky;
         document.getElementById("comparativeFormInformation").value = normalizedForm.comparativeFormInformation;
         if (normalizedForm.etymology) {
-            let etymologyUrl = removeTrialingProjection(normalizedForm._links.etymology.href);
+            let etymologyUrl = removeTrailingProjection(normalizedForm._links.etymology.href);
             genericGet(etymologyUrl, function(data) {
                 document.getElementById("availableEtymologyLanguages").value = data._links.self.href;
             });
@@ -125,7 +125,7 @@
             document.getElementById("availableEtymologyLanguages").value = noLanguageValue;
         }
         if (normalizedForm.mediatingLanguage) {
-            let mediatingLanguageUrl = removeTrialingProjection(normalizedForm._links.mediatingLanguage.href);
+            let mediatingLanguageUrl = removeTrailingProjection(normalizedForm._links.mediatingLanguage.href);
             genericGet(mediatingLanguageUrl, function(data) {
                 document.getElementById("availableMediatingLanguages").value = data._links.self.href;
             });

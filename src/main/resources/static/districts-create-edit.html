@@ -66,7 +66,7 @@
 
     function displayDistrict(district) {
         document.getElementById("districtName").value = district.name;
-        var belongsToRegionUrl = removeTrialingProjection(
+        var belongsToRegionUrl = removeTrailingProjection(
             district._links.belongsToRegion.href);
         genericGet(belongsToRegionUrl, function(data) {
             document.getElementById("availableRegions").value = data._links.self.href;

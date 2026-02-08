@@ -63,4 +63,4 @@ out/
 hs_err_pid*
 
 /db
-!/release/*.jar
+!/release/**/*.jar

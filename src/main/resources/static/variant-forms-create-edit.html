@@ -19,6 +19,7 @@
     var globVariantFormId = "";
     var addedAdaptationTypesSet = new Set();
     const IS_ADAPTED_TO_SWEDISH_NO_VALUE = "NO";
+    const IS_ADAPTED_TO_SWEDISH_NOT_APPLICABLE_VALUE = "NOT_APPLICABLE";
     
     document.addEventListener('DOMContentLoaded', function() {
         init();
@@ -26,8 +27,8 @@
 
     async function init() {
         populateAvailableIsAdaptedToSwedishTypes(await getAllIsAdaptedToSwedishTypesAsync());
-        let adapationTypes = await getAllAdaptationTypesAsync();
-        populateAvailableAdaptationTypes(adapationTypes._embedded.adaptationTypes);
+        let adaptationTypes = await getAllAdaptationTypesAsync();
+        populateAvailableAdaptationTypes(adaptationTypes._embedded.adaptationTypes);
         let normalizedForms = await getAllNormalizedFormsAsync();
         populateAvailableNormalizedForms(normalizedForms._embedded.normalizedForms);
         let searchParams = new URLSearchParams(window.location.search);
@@ -54,14 +55,14 @@
     }
     
     
-    function populateAvailableAdaptationTypes(adapationTypes) {
-        console.log("No of adapationTypes: " + adapationTypes.length);
+    function populateAvailableAdaptationTypes(adaptationTypes) {
+        console.log("No of adaptationTypes: " + adaptationTypes.length);
         let selectForAdaptationTypes = document.getElementById("availableAdaptationTypes");
-        for (let i = 0; i < adapationTypes.length; i++) {
+        for (let i = 0; i < adaptationTypes.length; i++) {
             selectForAdaptationTypes.add(
                 new Option(
-                    adapationTypes[i].name
-                    , adapationTypes[i]._links.self.href));
+                    adaptationTypes[i].name
+                    , adaptationTypes[i]._links.self.href));
         }
     }
     
@@ -118,13 +119,14 @@
 
     function displayVariantForm(variantForm) {
         document.getElementById("variantForm").value = variantForm.variantForm;
+        document.getElementById("availableIsAdaptedToSwedishTypes").value = variantForm.isAdaptedToSwedish;
         
         let options = Array.from(document.getElementById("availableAdaptationTypes").selectedOptions);
         addAdaptationTypes(
-            new Map(variantForm.adaptationTypes.map((adaptationType) => [removeTrialingProjection(adaptationType._links.self.href), adaptationType.name])));
+            new Map(variantForm.adaptationTypes.map((adaptationType) => [removeTrailingProjection(adaptationType._links.self.href), adaptationType.name])));
         
         
-        let normalizedFormUrl = removeTrialingProjection(variantForm._links.normalizedForm.href);
+        let normalizedFormUrl = removeTrailingProjection(variantForm._links.normalizedForm.href);
         genericGet(normalizedFormUrl, function(data) {
             document.getElementById("availableNormalizedForms").value = data._links.self.href;
             normalizedFormSelected();
@@ -151,7 +153,8 @@
     function isAdaptedToSwedishSelected() {
         let selectedIsAdaptedToSwedishType = document.getElementById("availableIsAdaptedToSwedishTypes").value;
         console.log("selectedIsAdaptedToSwedishType: " + selectedIsAdaptedToSwedishType);
-        if (selectedIsAdaptedToSwedishType === IS_ADAPTED_TO_SWEDISH_NO_VALUE) {
+        if (selectedIsAdaptedToSwedishType === IS_ADAPTED_TO_SWEDISH_NO_VALUE
+            || selectedIsAdaptedToSwedishType === IS_ADAPTED_TO_SWEDISH_NOT_APPLICABLE_VALUE) {
             disableAndEmptyAddAdaptationTypes();
         } else {
             enableAddAdaptationTypes();
