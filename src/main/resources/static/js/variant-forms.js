@@ -14,6 +14,11 @@ async function getAllVariantFormsAsync() {
 	return returnedData._embedded.variantForms;
 }
 
+async function getAllVariantFormsAsyncNoPaging() {
+    let returnedData = await genericGetAllAsync("variantForms?size=1000");
+	return returnedData._embedded.variantForms;
+}
+
 function getVariantFormById(id, callback, errorCallback) {
     genericGetById(id, "variantForms", callback, errorCallback, "variantFormView");
 }

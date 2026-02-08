@@ -18,7 +18,8 @@
     
     async function init() {
         populateAvailableLocations(await getAllLocationsAsync());
-        populateVariantForms(await getAllVariantFormsAsync());
+        //populateVariantForms(await getAllVariantFormsAsync());
+        populateVariantForms(await getAllVariantFormsAsyncNoPaging());
         populateSourceFindings(await getAllSourceFindingsAsync());
         let searchParams = new URLSearchParams(window.location.search)
         if (searchParams.has("attestationId")) {
