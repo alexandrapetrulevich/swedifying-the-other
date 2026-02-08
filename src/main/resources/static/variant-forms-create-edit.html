@@ -29,7 +29,8 @@
         populateAvailableIsAdaptedToSwedishTypes(await getAllIsAdaptedToSwedishTypesAsync());
         let adaptationTypes = await getAllAdaptationTypesAsync();
         populateAvailableAdaptationTypes(adaptationTypes._embedded.adaptationTypes);
-        let normalizedForms = await getAllNormalizedFormsAsync();
+        //let normalizedForms = await getAllNormalizedFormsAsync();
+        let normalizedForms = await getAllNormalizedFormsAsyncNoPaging();
         populateAvailableNormalizedForms(normalizedForms._embedded.normalizedForms);
         let searchParams = new URLSearchParams(window.location.search);
         if (searchParams.has("variantFormId")) {
