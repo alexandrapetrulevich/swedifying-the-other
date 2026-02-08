@@ -13,6 +13,10 @@ async function getAllNormalizedFormsAsync() {
     return await genericGetAllAsync("normalizedForms", "normalizedFormView");
 }
 
+async function getAllNormalizedFormsAsyncNoPaging() {
+    return await genericGetAllAsync("normalizedForms?size=1000");
+}
+
 function getNormalizedFormById(id, callback, errorCallback) {
     genericGetById(id, "normalizedForms", callback, errorCallback, "normalizedFormView");
 }
